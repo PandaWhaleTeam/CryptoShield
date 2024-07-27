@@ -6,6 +6,7 @@ import fizzbuzz from "../example ";
 
 // Step 3: create test file --> ex. <fileName>.test.js  (same name as file you're testing + <test>.)
 
+// Step 4: npm test
 
 describe('fizzbuzz test', () => {
     const arr = fizzbuzz(31);
