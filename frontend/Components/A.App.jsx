@@ -10,7 +10,8 @@ const App = () => {
         <div>
             <Router>
                 <Routes>
-                    <Route path="/" element={<LoginForm />} />
+                    <Route path="/" element={<Homepage />} />
+                    
                     <Route path="/graph" element={<Graph />} />
                     {/* Modify the route to accept coinId as a URL parameter */}
                     <Route path="/coinpage/:coinId" element={<CoinPage />} />
