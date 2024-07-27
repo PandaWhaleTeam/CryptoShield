@@ -31,6 +31,10 @@ const routerAPI = require(apiPath);
 
 app.use(express.json());
 
+app.use(express.static(path.resolve(__dirname, '../../dist')));
+
+app.use('/client/assets', express.static(path.resolve(__dirname, '../public/resource')))
+
 // CORS middleware options
 const corsOptions = {
   origin: 'http://localhost:3000',
@@ -42,6 +46,8 @@ app.use(cors());
 
 // route handler for requests to /api
 app.use('/api', routerAPI);
+
+
 
 
 // Unknown route handler

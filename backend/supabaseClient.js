@@ -13,11 +13,9 @@ SBcontroller.get_data_test = async (req, res, next) => {
         console.log(supabase)
 
         const { data, error }  = await supabase
-            .from('test')
+            .from('user')
             .select('*')
-        
-        
-  
+          
       if (error) {
         console.error('Error fetching data:', error);
       } else {
