@@ -24,21 +24,22 @@ const GoogleSignIn = () => {
     if (error) {
       console.error('Error: ', error)
     } else {
+      navigate('/HomePage')
       
-      console.log('logged in suucessfully')
-      setIsAuthenticated(true)
-      console.log(isAuthenticated)
+      // console.log('logged in suucessfully')
+      // setIsAuthenticated(true)
+      // console.log(isAuthenticated)
     }
 
     // if (isAuthenticated){
     //   navigate('/HomePage')
     // }
   }
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate('/HomePage');
-    }
-  }, [isAuthenticated, navigate]);
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     navigate('/HomePage');
+  //   }
+  // }, [isAuthenticated, navigate]);
   return (
     <button onClick={handleSignIn}>Sign in with Google</button>
   )
