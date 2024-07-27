@@ -12,7 +12,7 @@ const App = () => {
             <TopNavbar /> 
             <Router>
                 <Routes>
-                    <Route path="/" element={<LoginForm />} />
+                    <Route path="/" element={<HomePage />} />
                     
                     <Route path="/graph" element={<Graph />} />
                     {/* Modify the route to accept coinId as a URL parameter */}
