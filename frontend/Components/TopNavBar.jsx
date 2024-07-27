@@ -2,9 +2,9 @@ import React, {Fragment} from "react";
 import PageNav from './PageNav.jsx';
 import { NavLink } from "react-router-dom";
 import { border } from "@mui/system";
-import cryptoLogo from "../images/cryptoLogo.png"
+import cryptoLogo from "../images/cryptologo.png"
 
-// //our array for the navigation of page directories   
+// //our array for the navigation of page directories
 const topNavBar = () => {
     let Links = [
         {name:"Home", link:"/" },
@@ -52,4 +52,4 @@ const topNavBar = () => {
 //     )
 // }
 
-export default topNavBar; 
+export default topNavBar;
