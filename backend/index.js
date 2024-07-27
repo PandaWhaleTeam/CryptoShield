@@ -6,11 +6,11 @@ const { Pool } = require('pg');
 const cors = require('cors');
 const dotenv = require('dotenv').config();
 
+
 const app = express();
 const PORT = 8080;
 
 const apiPath = path.join(__dirname, '/routes/api.js');
-
 const routerAPI = require(apiPath);
 
 // const dbFunctionality = () => {
@@ -30,6 +30,10 @@ const routerAPI = require(apiPath);
 // };
 
 app.use(express.json());
+// app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));  // Will's change
+
+
 
 // CORS middleware options
 const corsOptions = {
@@ -41,7 +45,12 @@ const corsOptions = {
 app.use(cors());
 
 // route handler for requests to /api
+
+const loginRouter = require('./routes/login')
+
 app.use('/api', routerAPI);
+app.use('/api', loginRouter);   // Will's change
+
 
 
 // Unknown route handler
