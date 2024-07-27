@@ -117,5 +117,7 @@ const LoginForm = () => {
     );
   };
   
+  const test = 'just a test'
+
   export default LoginForm;
   
