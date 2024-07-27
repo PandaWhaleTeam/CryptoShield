@@ -35,6 +35,10 @@ app.use(express.urlencoded({ extended: true }));  // Will's change
 
 
 
+app.use(express.static(path.resolve(__dirname, '../../dist')));
+
+app.use('/client/assets', express.static(path.resolve(__dirname, '../public/resource')))
+
 // CORS middleware options
 const corsOptions = {
   origin: 'http://localhost:3000',
@@ -50,6 +54,8 @@ const loginRouter = require('./routes/login')
 
 app.use('/api', routerAPI);
 app.use('/api', loginRouter);   // Will's change
+
+
 
 
 
