@@ -14,7 +14,8 @@ const GoogleSignIn = () => {
   
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
+
+
   const handleSignIn = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
@@ -24,22 +25,13 @@ const GoogleSignIn = () => {
     if (error) {
       console.error('Error: ', error)
     } else {
-      navigate('/HomePage')
-      
-      // console.log('logged in suucessfully')
-      // setIsAuthenticated(true)
-      // console.log(isAuthenticated)
+      setIsAuthenticated(true)
     }
 
-    // if (isAuthenticated){
-    //   navigate('/HomePage')
-    // }
+    if (isAuthenticated){
+      navigate('/HomePage')
+    }
   }
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     navigate('/HomePage');
-  //   }
-  // }, [isAuthenticated, navigate]);
   return (
     <button onClick={handleSignIn}>Sign in with Google</button>
   )
