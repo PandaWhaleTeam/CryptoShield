@@ -5,12 +5,14 @@ import CoinPage from './D.CoinPage';
 import Coin from './E.Coin';
 import Graph from './G.Graph.jsx';
 import LoginForm from './H.LoginForm.jsx';
+import TopNavbar from './TopNavBar.jsx';
 const App = () => {
     return (
         <div>
+            <TopNavbar /> 
             <Router>
                 <Routes>
-                    <Route path="/" element={<LoginForm />} />
+                    <Route path="/" element={<HomePage />} />
                     
                     <Route path="/graph" element={<Graph />} />
                     {/* Modify the route to accept coinId as a URL parameter */}
