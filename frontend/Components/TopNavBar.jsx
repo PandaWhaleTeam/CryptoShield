@@ -4,8 +4,10 @@ import { NavLink } from "react-router-dom";
 import { border } from "@mui/system";
 import cryptoLogo from "../images/cryptoLogo.png"
 
+
 // //our array for the navigation of page directories   
-const topNavBar = () => {
+const TopNavBar = () => {
+
     let Links = [
         {name:"Home", link:"/" },
         {name:"News", link:"/news" },
@@ -52,4 +54,4 @@ const topNavBar = () => {
 //     )
 // }
 
-export default topNavBar; 
+export default TopNavBar; 

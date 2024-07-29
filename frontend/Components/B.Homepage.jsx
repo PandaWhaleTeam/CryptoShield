@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Link, useNavigate } from 'react-router-dom';
 import PreviewCard from './C.PreviewCard';
 import Select from 'react-select';
+import TopNavBar from './TopNavBar';
 
 const HeartIcon = styled.div`
   width: 50px;
@@ -178,6 +179,7 @@ const HomePage = () => {
 
   return (
     <Container>
+      <TopNavBar /> 
       <Title>CryptoShield</Title>
 
       <CardContainer>
