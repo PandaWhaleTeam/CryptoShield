@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import googleLogo from '/public/google.png';
 
 
 
@@ -11,7 +12,7 @@ const supabase = createClient('https://ptdcusrimsowtumozeln.supabase.co', 'eyJhb
 
 
 const GoogleSignIn = () => {
-  
+
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -21,7 +22,7 @@ const GoogleSignIn = () => {
       provider: 'google',
       //redirectTo: '/HomePage'
     })
-    
+
     if (error) {
       console.error('Error: ', error)
     } else {
@@ -34,7 +35,42 @@ const GoogleSignIn = () => {
     }
   }
   return (
-    <button onClick={handleSignIn}>Sign in with Google</button>
+    <button onClick={handleSignIn} style={{
+      display: 'block',
+      width: '100%',
+      maxWidth: '300px',
+      padding: '12px',
+      borderRadius: '50px',
+      border: '1px solid #ccc',
+      backgroundColor: '#FFF',
+      color: '#000',
+      fontSize: '16px',
+      fontWeight: 'bold',
+      cursor: 'pointer',
+      outline: 'none',
+      boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+      marginTop: '20px',
+      textAlign: 'center',
+      transition: 'background-color 0.3s ease'
+  }}
+  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#357ae8'}
+  onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#4285F4'}
+
+
+
+  ><img src={googleLogo}
+  style={{
+    width: '24px',
+    height: '24px',
+
+    marginRight: '10px',
+  }}
+/>
+  Sign in with Google</button>
+
+
+
+
   )
 
 }

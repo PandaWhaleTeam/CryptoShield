@@ -1,0 +1,96 @@
+.log-in-button {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 5px;
+    
+}
+
+.log-in-button:hover {
+    transform: scale(1.05);
+}
+
+.google-button {
+
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+
+.google-button:hover {
+    transform: scale(1.05)
+}
+
+.loginBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    padding: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+
+  .form-control {
+
+    width: 100%;
+    max-width: 300px;
+    padding: 12px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+
+
+
+  .lineBreak {
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+    margin: 10px 0;
+  }
+
+  /* .lineBreakContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 10px 0;
+    position: relative;
+  } */
+
+  /* .lineBreak {
+    flex-grow: 1;
+    border: none;
+    border-top: 1px solid #ddd;
+    height: 1px;
+    margin: 0 10px;
+
+  } */
+
+  /* .lineBreakText {
+    padding: 0 10px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #333;
+    background: #f9f9f9;
+    white-space: nowrap;
+  } */
+
+
+
+
+  .signInText {
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 30px;
+    margin-top: 5px;
+    font-weight: bold;
+  }
