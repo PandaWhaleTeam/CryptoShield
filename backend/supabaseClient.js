@@ -74,6 +74,55 @@ SBcontroller.get_fav = async (req, res, next) => {
       }
   };
 
+
+  SBcontroller.delete_fav = async (req, res, next) => {
+    console.log(req.body.userId)
+    const userId = req.body.userId;  
+    const newFav = req.body.coinId;  
+
+    try {
+        // Fetch current favorites
+        const { data, error } = await supabase
+            .from('user')
+            .select('fav')
+            .eq('user_id', userId)
+            .single();
+
+        if (error) {
+            console.error('Error fetching data:', error);
+            return res.status(500).json({ error: 'Error fetching data' });
+        }
+       
+        // if the usert has no fav, make an empty arr
+        const currentFavs = data.fav || [];
+        console.log(currentFavs)
+        deleteIndex = currentFavs.indexOf(newFav)
+        if (deleteIndex > -1) {
+        
+            currentFavs.splice(deleteIndex, 1);
+        }
+   
+
+        // Update the favorites
+        const { data: updateData, error: updateError } = await supabase
+            .from('user')
+            .update({ fav: currentFavs})
+            .eq('user_id', userId);
+
+        if (updateError) {
+            console.error('Error updating data:', updateError);
+            return res.status(500).json({ error: 'Error updating data' });
+        }
+
+        console.log('Favorites updated successfully:', updateData);
+        res.json(updateData);
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'An error occurred' });
+    }
+};
+
   module.exports = SBcontroller;
 
 

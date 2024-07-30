@@ -6,7 +6,7 @@ import HomePage from "./B.Homepage";
 const userNav = () => {
     return (
         <> 
-        <NavLink>Home</NavLink>
+        <NavLink to="/HomePage">Home</NavLink>
         <NavLink>News</NavLink>
         <NavLink>DashBoard</NavLink>
         <NavLink>About Us</NavLink>
