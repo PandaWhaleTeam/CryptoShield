@@ -9,15 +9,16 @@ import TopNavbar from './TopNavBar.jsx';
 const App = () => {
     return (
         <div>
-            <TopNavbar /> 
             <Router>
                 <Routes>
+                    
                     <Route path="/" element={<HomePage />} />
                     
                     <Route path="/graph" element={<Graph />} />
                     {/* Modify the route to accept coinId as a URL parameter */}
                     <Route path="/coinpage/:coinId" element={<CoinPage />} />
                     <Route path="/HomePage" element={<HomePage />} />
+                    <Route path="/LoginForm" element={<LoginForm />} />
                 </Routes>
             </Router>
         </div>

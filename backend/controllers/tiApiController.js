@@ -9,7 +9,7 @@ tiApiController.coinListMiddleware = async (req, res, next) => {
   const options = {
     method: 'GET',
     url: 'https://api.tokeninsight.com/api/v1/coins/list',
-    headers: { accept: 'application/json', TI_API_KEY: 'c8c0fd6ddc4f487291887853c5a5dc92' }
+    headers: { accept: 'application/json', TI_API_KEY: 'e11aa3a0be0b4f8fae4ef0f89138fc76' }
   };
 
   try {
