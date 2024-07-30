@@ -62,7 +62,7 @@ tiApiController.completeCoinMiddleware = async (req, res, next) => {
   const options = {
     method: 'GET',
     url: `https://api.tokeninsight.com/api/v1/coins/${id}`, // use the destructured id
-    headers: { accept: 'application/json', TI_API_KEY: 'c8c0fd6ddc4f487291887853c5a5dc92' },
+    headers: { accept: 'application/json', TI_API_KEY: process.env.TI_KEY  },
   };
 
   try {
@@ -89,7 +89,7 @@ tiApiController.historyCoinMiddleware = async (req, res, next) => { // rename va
   const options = {
     method: 'GET',
     url: `https://api.tokeninsight.com/api/v1/history/coins/${id}?interval=${interval}&length=${length}`, // Construct URL dynamically
-    headers: { accept: 'application/json', TI_API_KEY: 'c8c0fd6ddc4f487291887853c5a5dc92' },
+    headers: { accept: 'application/json', TI_API_KEY: process.env.TI_KEY },
   };
 
   try {

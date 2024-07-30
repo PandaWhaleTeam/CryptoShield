@@ -3,6 +3,8 @@ const tiApiController = require('../controllers/tiApiController');
 const SB_controller = require('../supabaseClient')
 const router = express.Router();
 
+
+
 // GET Requests to retrieve data using the middleware routes
 
 
@@ -19,8 +21,6 @@ router.post('/deleteFav', SB_controller.delete_fav, (req, res) => {
 })
 
 
-
-
 router.get('/coins', tiApiController.coinListMiddleware, (req, res) => {
   return res.status(200).json(res.locals);
 });
@@ -35,6 +35,10 @@ router.get('/completeCoin/:id', tiApiController.completeCoinMiddleware, (req, re
 
 router.get('/historyCoin/:id', tiApiController.historyCoinMiddleware, (req, res) => { // Updated to use dynamic middleware
   return res.status(200).json(res.locals);
+});
+
+router.post('/login', SB_controller.verifyUser, (req, res) => {
+  return res.status(200).send('Successful Login!')
 });
 
 

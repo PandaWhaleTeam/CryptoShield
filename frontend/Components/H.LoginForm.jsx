@@ -24,7 +24,7 @@ const LoginForm = () => {
     const handleSubmit = async (event) => {
       event.preventDefault();
       try {
-        const response = await fetch('/users/login', {
+        const response = await fetch('/api/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -33,9 +33,10 @@ const LoginForm = () => {
         });
         if (response.ok) {
           console.log('response okay')
-          navigate('/HomePage');
+          navigate('/HomePage'); //change this to ProfilePage once it's created
         } else {
           console.error('Login failed');
+          alert('Your username or password is incorrect')
         }
       } catch (err) {
         console.error('Error with login fetch:', err);
@@ -117,7 +118,7 @@ const LoginForm = () => {
     );
   };
   
-  const test = 'just a test'
+  //const test = 'just a test'
 
   export default LoginForm;
   
