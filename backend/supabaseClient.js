@@ -82,7 +82,7 @@ SBcontroller.verifyUser = async (req, res, next) => {
         const { usernameInput: username, passwordInput: password } = req.body;
         // const verifyUserQuery = `
         // SELECT * FROM user
-        // WHERE username = $1 AND password = $2
+        // WHERE username = '${username}' AND password = '${password}';
         // `
         //const result = await supabase(verifyUserQuery)
         const { data, error } = await supabase
@@ -93,7 +93,7 @@ SBcontroller.verifyUser = async (req, res, next) => {
         console.log(data)  
         //if (error) throw error;
         if(data.length === 0) {
-            return res.status(401).send('Invalid username or passwprd');
+            return res.status(401).send('Invalid username or password');
         }
         return next()
     } catch (error) {
@@ -113,7 +113,6 @@ SBcontroller.verifyUser = async (req, res, next) => {
 //   }
 
 // })
-
 
   module.exports = SBcontroller;
 

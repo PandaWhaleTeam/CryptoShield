@@ -95,6 +95,7 @@ const LoginForm = () => {
               className="loginButton"
               variant="login"
               type="submit"
+              
               style={{ border: '1px solid black', marginRight: '20px'}}
             >
             Log In
