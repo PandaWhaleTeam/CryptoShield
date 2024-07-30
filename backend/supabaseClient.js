@@ -113,7 +113,6 @@ SBcontroller.verifyUser = async (req, res, next) => {
 //   }
 
 // })
-const test = 'this is just my second test'
 
   module.exports = SBcontroller;
 
