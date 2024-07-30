@@ -5,6 +5,10 @@ import PreviewCard from './C.PreviewCard';
 import Select from 'react-select';
 import TopNavBar from './TopNavBar';
 
+import './TopNavBar.css';
+
+
+
 const HeartIcon = styled.div`
   width: 50px;
   height: 50px;
@@ -15,7 +19,7 @@ const HeartIcon = styled.div`
   position: absolute;
   top: 20px;
   right: 0px;
-  
+
 `;
 
 const CardWrapper = styled.div`
@@ -119,11 +123,11 @@ const HomePage = () => {
               },
               body: JSON.stringify({ userId: 3}), // replace user.id with the actual user ID in future
             });
-        
+
             if (!response.ok) {
               throw new Error('Error adding favorite');
             }
-        
+
             const data = await response.json();
             //return data
             console.log('got Fav successfully:', data);
@@ -131,7 +135,7 @@ const HomePage = () => {
                 let send_to_clicked = {};
                 data[0].fav.forEach(ele=>{
                     send_to_clicked[ele] = true;
-                    
+
                 })
                 setClickedHearts(send_to_clicked)
 
@@ -148,14 +152,14 @@ const HomePage = () => {
   // get triggered when user clicks heart
   const toggleHeart = async (id) => {
     // keep state of all coins eccept for the cliked conin. cliked coin becomes true
-   
+
     setClickedHearts(prevState => (
         {
       ...prevState,
-      [id]: !prevState[id], // if conin with the id doesn;t exist in clikedlist, add it 
+      [id]: !prevState[id], // if conin with the id doesn;t exist in clikedlist, add it
     }));
     console.log('clickedHearts', clickedHearts)
-    // send api request to SB 
+    // send api request to SB
 
     try {
         const response = await fetch('/api/addFav', {
@@ -165,11 +169,11 @@ const HomePage = () => {
           },
           body: JSON.stringify({ userId: 3, coinId: id }), // replace user.id with the actual user ID in future
         });
-    
+
         if (!response.ok) {
           throw new Error('Error adding favorite');
         }
-    
+
         const data = await response.json();
         console.log('Fav added successfully:', data);
       } catch (error) {
@@ -179,7 +183,9 @@ const HomePage = () => {
 
   return (
     <Container>
-      <TopNavBar /> 
+
+      <TopNavBar />
+
       <Title>CryptoShield</Title>
 
       <CardContainer>
@@ -195,7 +201,7 @@ const HomePage = () => {
               />
             </Link>
             <HeartIcon
-              // 
+              //
               clicked={!!clickedHearts[crypto.id]}
               onClick={() => toggleHeart(crypto.id)}
             />
