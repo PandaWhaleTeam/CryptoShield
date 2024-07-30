@@ -73,8 +73,50 @@ SBcontroller.get_fav = async (req, res, next) => {
           res.status(500).json({ error: 'An error occurred' });
       }
   };
+SBcontroller.verifyUser = async (req, res, next) => {
+    try {
+        console.log('I am inside of verifyUser')
+        console.log(req.body)
+        // const username = req.body.usernameInput;
+        // const password = req.body.passwordInput;
+        const { usernameInput: username, passwordInput: password } = req.body;
+        // const verifyUserQuery = `
+        // SELECT * FROM user
+        // WHERE username = $1 AND password = $2
+        // `
+        //const result = await supabase(verifyUserQuery)
+        const { data, error } = await supabase
+            .from('user')
+            .select('*')
+            .eq('username', username)
+            .eq('password', password);
+        console.log(data)  
+        //if (error) throw error;
+        if(data.length === 0) {
+            return res.status(401).send('Invalid username or passwprd');
+        }
+        return next()
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'An error occurred inside of verifyUser middleware' });
+    }
+}
+  //const { username, password } = req.body;
+
+  // TODO: Authentication logic
+  // TODO: Check credentials in database --> make queries here!
+
+//   if (username === 'testuser' && password === 'password') {
+//       res.status(200).json({ message: 'Login successful!' });
+//   } else {
+//       res.status(401).json({ message: 'Invalid credentials' });
+//   }
+
+// })
+
 
   module.exports = SBcontroller;
+
 
 
 

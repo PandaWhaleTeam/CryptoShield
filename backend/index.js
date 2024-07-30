@@ -50,10 +50,10 @@ app.use(cors());
 
 // route handler for requests to /api
 
-const loginRouter = require('./routes/login')
+//const loginRouter = require('./routes/login')
 
 app.use('/api', routerAPI);
-app.use('/api', loginRouter);   // Will's change
+//app.use('/api', loginRouter);   // Will's change
 
 
 
