@@ -42,16 +42,11 @@ const LoginForm = () => {
         console.error('Error with login fetch:', err);
       }
     };
-
-    // const handleGoogleSignInSuccess = () => {
-    //   console.log('google sign in successful');
-    //   navigate('/HomePage')
-    // }
-  
+ 
   
     return (
       <Container className="loginFormContainer" style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', border: '1px solid orange'}}>
-        <Form className="loginBox" onSubmit={handleSubmit} style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height: 'auto', padding: '15px 10px', border:'1px solid white', borderRadius: '5px', backgroundColor: 'white', width: '25%'}}>
+        <Form className="loginBox" onClick={handleSubmit}  style={{display: 'flex', flexDirection: 'column', alignItems: 'center', height: 'auto', padding: '15px 10px', border:'1px solid white', borderRadius: '5px', backgroundColor: 'white', width: '25%'}}>
           <img src={'/public/resource/CryptoShieldLogo.png'} alt='CryptoShieldLogo'/>
      
           <Form.Group
@@ -92,6 +87,7 @@ const LoginForm = () => {
               className="loginButton"
               variant="login"
               type="submit"
+              
               style={{ border: '1px solid black', marginRight: '20px'}}
             >
             Log In
