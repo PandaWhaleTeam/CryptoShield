@@ -20,13 +20,14 @@ const GoogleSignIn = () => {
   const handleSignIn = async () => {
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: 'google',
-      //redirectTo: navigate('/HomePage')
+      //redirectTo: '/HomePage'
     })
 
     if (error) {
       console.error('Error: ', error)
     } else {
       setIsAuthenticated(true)
+      
     }
 
     if (isAuthenticated){
