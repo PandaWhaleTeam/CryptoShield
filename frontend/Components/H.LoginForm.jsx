@@ -95,7 +95,7 @@ const LoginForm = () => {
               className="loginButton"
               variant="login"
               type="submit"
-              
+
               style={{ border: '1px solid black', marginRight: '20px'}}
             >
             Log In
@@ -150,7 +150,7 @@ const LoginForm = () => {
             maxWidth: '300px',
             padding: '12px',
             borderRadius: '50px',
-            border: 'none',
+            border: '1px solid #ccc',
             backgroundColor: '#007bff',
             color: '#fff',
             fontSize: '16px',
@@ -218,8 +218,8 @@ const LoginForm = () => {
 
 
 
-  
-  
+
+
 
 
   export default LoginForm;

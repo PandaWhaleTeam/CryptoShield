@@ -5,25 +5,26 @@ import CoinPage from './D.CoinPage';
 import Coin from './E.Coin';
 import Graph from './G.Graph.jsx';
 import LoginForm from './H.LoginForm.jsx';
+import Dashboard from './Dashboard';
 
 const App = () => {
     return (
-        <div>
-
 
             <Router>
+                <div className="app-container">
                 <Routes>
-                    
+
                     <Route path="/" element={<HomePage />} />
                     <Route path="/login" element={<LoginForm />} />
                     <Route path="/graph" element={<Graph />} />
                     {/* Modify the route to accept coinId as a URL parameter */}
                     <Route path="/coinpage/:coinId" element={<CoinPage />} />
-                    <Route path="/HomePage" element={<HomePage />} />
-                    <Route path="/LoginForm" element={<LoginForm />} />
+                    <Route path="/homePage" element={<HomePage />} />
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/loginForm" element={<LoginForm />} />
                 </Routes>
-            </Router>
-        </div>
+            </div>
+    </Router>
     );
 };
 

@@ -28,7 +28,7 @@ const GoogleSignIn = () => {
       console.error('Error: ', error)
     } else {
       setIsAuthenticated(true)
-      
+
     }
 
     if (isAuthenticated){
@@ -64,8 +64,8 @@ const GoogleSignIn = () => {
 
   ><img src={googleLogo}
   style={{
-    width: '24px',
-    height: '24px',
+    width: '20px',
+    height: '20px',
     marginLeft: '-15px',
     marginRight: '25px',
     verticalAlign: 'middle',
