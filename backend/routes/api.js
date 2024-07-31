@@ -38,7 +38,9 @@ router.get('/historyCoin/:id', tiApiController.historyCoinMiddleware, (req, res)
 });
 
 router.post('/login', SB_controller.verifyUser, (req, res) => {
-  return res.status(200).send('Successful Login!')
+  //user_id = res.locals.userId
+  console.log('res.locals.userId',res.locals.userId)
+  return res.status(200).json({ userId: res.locals.userId })
 });
 
 

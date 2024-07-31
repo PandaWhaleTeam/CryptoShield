@@ -163,6 +163,7 @@ SBcontroller.verifyUser = async (req, res, next) => {
         res.status(500).json({ error: 'An error occurred' });
     }
 };
+
 SBcontroller.verifyUser = async (req, res, next) => {
     try {
         console.log('I am inside of verifyUser')
@@ -178,13 +179,17 @@ SBcontroller.verifyUser = async (req, res, next) => {
         const { data, error } = await supabase
             .from('user')
             .select('*')
+            // .select('id') 
             .eq('username', username)
             .eq('password', password);
-        console.log(data)  
+
+        console.log('hereeeeeee', data)  
         //if (error) throw error;
+        res.locals.userId = data[0].user_id;
         if(data.length === 0) {
             return res.status(401).send('Invalid username or password');
         }
+        
         return next()
     } catch (error) {
         console.error('Error:', error);

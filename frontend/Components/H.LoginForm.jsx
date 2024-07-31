@@ -35,7 +35,14 @@ const LoginForm = () => {
           body: JSON.stringify(loginInput),
         });
         if (response.ok) {
+          // console.log(response)
           console.log('response okay')
+
+          const data = await response.json();
+          console.log('Response okay');
+          console.log('User ID:', data.userId); 
+          localStorage.setItem('userId', data.userId);
+   
           navigate('/HomePage'); //change this to ProfilePage once it's created
         } else {
           console.error('Login failed');
