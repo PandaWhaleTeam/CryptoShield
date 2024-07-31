@@ -16,6 +16,10 @@ router.post('/addFav', SB_controller.add_fav, (req, res) => {
   return res.status(200);
 })
 
+router.post('/deleteFav', SB_controller.delete_fav, (req, res) => {
+  return res.status(200);
+})
+
 
 router.get('/coins', tiApiController.coinListMiddleware, (req, res) => {
   return res.status(200).json(res.locals);

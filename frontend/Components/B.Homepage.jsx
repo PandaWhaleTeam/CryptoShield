@@ -152,10 +152,38 @@ const HomePage = () => {
   const toggleHeart = async (id) => {
     // keep state of all coins eccept for the cliked conin. cliked coin becomes true
 
-    setClickedHearts(prevState => (
+    if (clickedHearts[id] == true){
+      setClickedHearts(prevState => (
         {
       ...prevState,
-      [id]: !prevState[id], // if conin with the id doesn;t exist in clikedlist, add it
+      [id]: false, // if conin with the id doesn't exist in clikedlist, add it 
+    }));
+    try {
+      const response = await fetch('/api/deleteFav', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ userId: 3, coinId: id }), // replace user.id with the actual user ID in future
+      });
+  
+      if (!response.ok) {
+        throw new Error('Error adding favorite');
+      }
+  
+      const data = await response.json();
+      console.log('Fav added successfully:', data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+     
+     console.log(clickedHearts)
+
+    } else {
+      setClickedHearts(prevState => (
+        {
+      ...prevState,
+      [id]: true, // if conin with the id doesn't exist in clikedlist, add it 
     }));
     console.log('clickedHearts', clickedHearts)
     // send api request to SB
@@ -178,6 +206,9 @@ const HomePage = () => {
       } catch (error) {
         console.error('Error:', error);
       }
+    }
+   
+
   };
 
   return (
