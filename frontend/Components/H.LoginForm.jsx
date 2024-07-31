@@ -95,7 +95,7 @@ const LoginForm = () => {
               className="loginButton"
               variant="login"
               type="submit"
-              
+
               style={{ border: '1px solid black', marginRight: '20px'}}
             >
             Log In
@@ -150,7 +150,7 @@ const LoginForm = () => {
             maxWidth: '300px',
             padding: '12px',
             borderRadius: '50px',
-            border: 'none',
+            border: '1px solid #ccc',
             backgroundColor: '#007bff',
             color: '#fff',
             fontSize: '16px',
@@ -160,7 +160,7 @@ const LoginForm = () => {
             boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
             textAlign: 'center',
             transition: 'background-color 0.3s ease',
-            marginTop: '20px',
+            marginTop: '10px',
           }}
           onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#0056b3'}
           onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#007bff'}
@@ -218,8 +218,8 @@ const LoginForm = () => {
 
 
 
-  
-  
+
+
 
 
   export default LoginForm;

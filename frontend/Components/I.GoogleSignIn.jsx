@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import googleLogo from '/public/google.png';
+import './googleSignIn.css';
 
 
 
@@ -25,7 +26,7 @@ const GoogleSignIn = () => {
       console.error('Error: ', error)
     } else {
       setIsAuthenticated(true)
-      
+
     }
 
     if (isAuthenticated){
@@ -33,7 +34,7 @@ const GoogleSignIn = () => {
     }
   }
   return (
-    <button onClick={handleSignIn} style={{
+    <button className='google-button' onClick={handleSignIn} style={{
       display: 'block',
       width: '100%',
       maxWidth: '300px',
@@ -49,19 +50,23 @@ const GoogleSignIn = () => {
       boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
       marginTop: '20px',
       textAlign: 'center',
-      transition: 'background-color 0.3s ease'
+      transition: 'background-color 0.3s ease',
+      gap: '10px',
+      marginBottom: '10px',
   }}
-  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#357ae8'}
-  onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#4285F4'}
+  // onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#357ae8'}
+  // onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#4285F4'}
 
-
+  onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#e0e0e0'}
+  onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#FFF'}
 
   ><img src={googleLogo}
   style={{
-    width: '24px',
-    height: '24px',
-
-    marginRight: '10px',
+    width: '20px',
+    height: '20px',
+    marginLeft: '-15px',
+    marginRight: '25px',
+    verticalAlign: 'middle',
   }}
 />
   Sign in with Google</button>
