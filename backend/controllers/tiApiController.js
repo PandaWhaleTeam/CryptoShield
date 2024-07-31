@@ -2,12 +2,14 @@ const axios = require('axios').default;
 
 const tiApiController = {};
 
+
+
 // middleware to retrieve coin list from TI API
 tiApiController.coinListMiddleware = async (req, res, next) => {
   const options = {
     method: 'GET',
     url: 'https://api.tokeninsight.com/api/v1/coins/list',
-    headers: { accept: 'application/json', TI_API_KEY: 'c8c0fd6ddc4f487291887853c5a5dc92' }
+    headers: { accept: 'application/json', TI_API_KEY: process.env.TI_KEY }
   };
 
   try {
@@ -30,7 +32,7 @@ tiApiController.ratingListMiddleware = async (req, res, next) => {
   const options = {
     method: 'GET',
     url: 'https://api.tokeninsight.com/api/v1/rating/coins',
-    headers: { accept: 'application/json', TI_API_KEY: 'c8c0fd6ddc4f487291887853c5a5dc92' }
+    headers: { accept: 'application/json', TI_API_KEY: process.env.TI_KEY }
   };
 
   try {
@@ -50,16 +52,16 @@ tiApiController.ratingListMiddleware = async (req, res, next) => {
 
 // middleware to retrieve a single coin's complete data from TI API when coin ID is input through front end
 tiApiController.completeCoinMiddleware = async (req, res, next) => {
-  // destructure id from req.params    
+  // destructure id from req.params
   const { id } = req.params;
-  /* req.params.id is a string, not an object with an idCoin prop. 
+  /* req.params.id is a string, not an object with an idCoin prop.
   see line 95 below for reference
   */
-  
+
   const options = {
     method: 'GET',
     url: `https://api.tokeninsight.com/api/v1/coins/${id}`, // use the destructured id
-    headers: { accept: 'application/json', TI_API_KEY: 'c8c0fd6ddc4f487291887853c5a5dc92' },
+    headers: { accept: 'application/json', TI_API_KEY: process.env.TI_KEY },
   };
 
   try {
@@ -86,7 +88,7 @@ tiApiController.historyCoinMiddleware = async (req, res, next) => { // rename va
   const options = {
     method: 'GET',
     url: `https://api.tokeninsight.com/api/v1/history/coins/${id}?interval=${interval}&length=${length}`, // Construct URL dynamically
-    headers: { accept: 'application/json', TI_API_KEY: 'c8c0fd6ddc4f487291887853c5a5dc92' },
+    headers: { accept: 'application/json', TI_API_KEY: process.env.TI_KEY },
   };
 
   try {
