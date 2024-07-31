@@ -101,6 +101,7 @@ const DashBoard = () => {
 
     return (
         <div>
+            <TopNavBar />
             <h1 style={{ color: 'white' }}>Welcome "username goes here"</h1>
             <DashboardContainer>
                 <DashboardItems>

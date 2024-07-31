@@ -53,12 +53,12 @@ tiApiController.ratingListMiddleware = async (req, res, next) => {
 
 // middleware to retrieve a single coin's complete data from TI API when coin ID is input through front end
 tiApiController.completeCoinMiddleware = async (req, res, next) => {
-  // destructure id from req.params    
+  // destructure id from req.params
   const { id } = req.params;
-  /* req.params.id is a string, not an object with an idCoin prop. 
+  /* req.params.id is a string, not an object with an idCoin prop.
   see line 95 below for reference
   */
-  
+
   const options = {
     method: 'GET',
     url: `https://api.tokeninsight.com/api/v1/coins/${id}`, // use the destructured id

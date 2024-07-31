@@ -3,16 +3,16 @@ import { NavLink } from "react-router-dom";
 import HomePage from "./B.Homepage";
 
 
-const userNav = () => {
+const UserNav = () => {
     return (
-        <> 
-        <NavLink to="/HomePage">Home</NavLink>
-        <NavLink>News</NavLink>
-        <NavLink>DashBoard</NavLink>
-        <NavLink>About Us</NavLink>
-        </>
+        <nav activeClassName='active'>
+        <NavLink to='/home'>Home</NavLink>
+        <NavLink to='/news'>News</NavLink>
+        <NavLink to='/dashboard'>DashBoard</NavLink>
+        <NavLink to='/about-us'>About Us</NavLink>
+        </nav>
     )
 
 }
 
-//export default userNav;
+export default UserNav;
