@@ -1,4 +1,5 @@
 const axios = require('axios').default;
+require("dotenv").config();
 
 const tiApiController = {};
 
@@ -32,7 +33,7 @@ tiApiController.ratingListMiddleware = async (req, res, next) => {
   const options = {
     method: 'GET',
     url: 'https://api.tokeninsight.com/api/v1/rating/coins',
-    headers: { accept: 'application/json', TI_API_KEY: process.env.TI_KEY }
+    headers: { accept: 'application/json', TI_API_KEY: process.env.TI_KEY}
   };
 
   try {
@@ -61,7 +62,7 @@ tiApiController.completeCoinMiddleware = async (req, res, next) => {
   const options = {
     method: 'GET',
     url: `https://api.tokeninsight.com/api/v1/coins/${id}`, // use the destructured id
-    headers: { accept: 'application/json', TI_API_KEY: process.env.TI_KEY },
+    headers: { accept: 'application/json', TI_API_KEY: process.env.TI_KEY  },
   };
 
   try {

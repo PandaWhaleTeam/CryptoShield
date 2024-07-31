@@ -82,6 +82,96 @@ SBcontroller.verifyUser = async (req, res, next) => {
         const { usernameInput: username, passwordInput: password } = req.body;
         // const verifyUserQuery = `
         // SELECT * FROM user
+        // WHERE username = $1 AND password = $2
+        // `
+        //const result = await supabase(verifyUserQuery)
+        const { data, error } = await supabase
+            .from('user')
+            .select('*')
+            .eq('username', username)
+            .eq('password', password);
+        console.log(data)  
+        //if (error) throw error;
+        if(data.length === 0) {
+            return res.status(401).send('Invalid username or passwprd');
+        }
+        return next()
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'An error occurred inside of verifyUser middleware' });
+    }
+}
+  //const { username, password } = req.body;
+
+  // TODO: Authentication logic
+  // TODO: Check credentials in database --> make queries here!
+
+//   if (username === 'testuser' && password === 'password') {
+//       res.status(200).json({ message: 'Login successful!' });
+//   } else {
+//       res.status(401).json({ message: 'Invalid credentials' });
+//   }
+
+// })
+
+
+
+  SBcontroller.delete_fav = async (req, res, next) => {
+    console.log(req.body.userId)
+    const userId = req.body.userId;  
+    const newFav = req.body.coinId;  
+
+    try {
+        // Fetch current favorites
+        const { data, error } = await supabase
+            .from('user')
+            .select('fav')
+            .eq('user_id', userId)
+            .single();
+
+        if (error) {
+            console.error('Error fetching data:', error);
+            return res.status(500).json({ error: 'Error fetching data' });
+        }
+       
+        // if the usert has no fav, make an empty arr
+        const currentFavs = data.fav || [];
+        console.log(currentFavs)
+        deleteIndex = currentFavs.indexOf(newFav)
+        if (deleteIndex > -1) {
+        
+            currentFavs.splice(deleteIndex, 1);
+        }
+   
+
+        // Update the favorites
+        const { data: updateData, error: updateError } = await supabase
+            .from('user')
+            .update({ fav: currentFavs})
+            .eq('user_id', userId);
+
+        if (updateError) {
+            console.error('Error updating data:', updateError);
+            return res.status(500).json({ error: 'Error updating data' });
+        }
+
+        console.log('Favorites updated successfully:', updateData);
+        res.json(updateData);
+
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: 'An error occurred' });
+    }
+};
+SBcontroller.verifyUser = async (req, res, next) => {
+    try {
+        console.log('I am inside of verifyUser')
+        console.log(req.body)
+        // const username = req.body.usernameInput;
+        // const password = req.body.passwordInput;
+        const { usernameInput: username, passwordInput: password } = req.body;
+        // const verifyUserQuery = `
+        // SELECT * FROM user
         // WHERE username = '${username}' AND password = '${password}';
         // `
         //const result = await supabase(verifyUserQuery)

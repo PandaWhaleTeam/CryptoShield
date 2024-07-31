@@ -96,3 +96,5 @@ const PreviewCard = ({ name, price, symbol, logo, rank }) => { // Added onClick 
 };
 
 export default PreviewCard;
+
+//<Price><b>Active Price:</b> ${Number(price.toFixed(2)).toLocaleString('en-US')}</Price>
