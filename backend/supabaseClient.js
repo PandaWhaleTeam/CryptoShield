@@ -179,13 +179,14 @@ SBcontroller.verifyUser = async (req, res, next) => {
         const { data, error } = await supabase
             .from('user')
             .select('*')
-            // .select('id') 
             .eq('username', username)
             .eq('password', password);
 
-        console.log('hereeeeeee', data)  
+        console.log('data', data)
         //if (error) throw error;
         res.locals.userId = data[0].user_id;
+        res.locals.username = data[0].username;
+        console.log('hereeeeeee',res.locals.username )  
         if(data.length === 0) {
             return res.status(401).send('Invalid username or password');
         }

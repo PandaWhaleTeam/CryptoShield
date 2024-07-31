@@ -87,13 +87,34 @@
 
 // export default TopNavBar;
 
-import React from "react";
+import React , {useState} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import cryptoLogo from "../images/cryptologo.png";
 import './TopNavBar.css';
 
-const TopNavBar = () => {
+const TopNavBar =  () => {
     const navigate = useNavigate();
+    //const [logged, setLogged] = useState(false); 
+    const storedUserId = localStorage.getItem('userId');
+
+    //if (storedUserId != "undefined"){setLogoutState(true)}
+    const  logout = ()=>{
+        
+    localStorage.setItem('userId', undefined);
+    localStorage.setItem('username', undefined);
+    // setLogged(false);
+    // setLogoutState(Math.random())
+        
+    if (location.pathname === '/homepage') {
+        
+        window.location.reload(); 
+        // setLogoutState(Math.random())
+        // window.location.reload(); 
+      } else {
+        navigate('/homepage');
+      }
+
+    }
 
   const links = [
     { name: "Home", link: "/" },
@@ -122,6 +143,7 @@ const TopNavBar = () => {
         </a>
         <a>
           <button onClick={() => navigate('/login')}>Sign In</button>
+          {<button onClick={logout}>Sign Out</button>}
         </a>
       </div>
     </header>

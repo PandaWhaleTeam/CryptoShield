@@ -69,6 +69,9 @@ const HomePage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   // this state keeps track of favorited conins (YA)
   const [clickedHearts, setClickedHearts] = useState({});
+ 
+
+  const storedUserId = localStorage.getItem('userId');
 
   const navigate = useNavigate();
 
@@ -113,100 +116,109 @@ const HomePage = () => {
   useEffect( ()=>{
 
     async function fetch_fav (){
-
+      if (storedUserId != 'undefined'){
         try {
-            const response = await fetch('/api/getFav', {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify({ userId: 3}), // replace user.id with the actual user ID in future
-            });
+          const response = await fetch('/api/getFav', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId: storedUserId}), // replace user.id with the actual user ID in future
+          });
 
-            if (!response.ok) {
-              throw new Error('Error adding favorite');
-            }
-
-            const data = await response.json();
-            //return data
-            console.log('got Fav successfully:', data);
-            if (data[0].fav != null){
-                let send_to_clicked = {};
-                data[0].fav.forEach(ele=>{
-                    send_to_clicked[ele] = true;
-
-                })
-                setClickedHearts(send_to_clicked)
-
-            }
-
-
-          } catch (error) {
-            console.error('Error:', error);
+          if (!response.ok) {
+            throw new Error('Error adding favorite');
           }
+
+          const data = await response.json();
+          //return data
+          console.log('got Fav successfully:', data);
+          if (data[0].fav != null){
+              let send_to_clicked = {};
+              data[0].fav.forEach(ele=>{
+                  send_to_clicked[ele] = true;
+
+              })
+              setClickedHearts(send_to_clicked)
+
+          }
+
+
+        } catch (error) {
+          console.error('Error:', error);
+        }
+
+      }
+
+
     }
     fetch_fav ()
   },[])
 
   // get triggered when user clicks heart
   const toggleHeart = async (id) => {
-    // keep state of all coins eccept for the cliked conin. cliked coin becomes true
 
-    if (clickedHearts[id] == true){
-      setClickedHearts(prevState => (
-        {
-      ...prevState,
-      [id]: false, // if conin with the id doesn't exist in clikedlist, add it 
-    }));
-    try {
-      const response = await fetch('/api/deleteFav', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ userId: 3, coinId: id }), // replace user.id with the actual user ID in future
-      });
-  
-      if (!response.ok) {
-        throw new Error('Error adding favorite');
-      }
-  
-      const data = await response.json();
-      console.log('Fav added successfully:', data);
-    } catch (error) {
-      console.error('Error:', error);
-    }
-     
-     console.log(clickedHearts)
+    if (storedUserId == "undefined"){
+      console.log('not logged')
+      navigate('/login')}
+    else {    // keep state of all coins eccept for the cliked conin. cliked coin becomes true
 
-    } else {
-      setClickedHearts(prevState => (
-        {
-      ...prevState,
-      [id]: true, // if conin with the id doesn't exist in clikedlist, add it 
-    }));
-    console.log('clickedHearts', clickedHearts)
-    // send api request to SB
-
-    try {
-        const response = await fetch('/api/addFav', {
+      if (clickedHearts[id] == true){
+        setClickedHearts(prevState => (
+          {
+        ...prevState,
+        [id]: false, // if conin with the id doesn't exist in clikedlist, add it 
+      }));
+      try {
+        const response = await fetch('/api/deleteFav', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ userId: 3, coinId: id }), // replace user.id with the actual user ID in future
+          body: JSON.stringify({ userId: storedUserId, coinId: id }), // replace user.id with the actual user ID in future
         });
-
+    
         if (!response.ok) {
           throw new Error('Error adding favorite');
         }
-
+    
         const data = await response.json();
         console.log('Fav added successfully:', data);
       } catch (error) {
         console.error('Error:', error);
       }
-    }
+       
+       console.log(clickedHearts)
+  
+      } else {
+        setClickedHearts(prevState => (
+          {
+        ...prevState,
+        [id]: true, // if conin with the id doesn't exist in clikedlist, add it 
+      }));
+      console.log('clickedHearts', clickedHearts)
+      // send api request to SB
+  
+      try {
+          const response = await fetch('/api/addFav', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ userId: storedUserId, coinId: id }), // replace user.id with the actual user ID in future
+          });
+  
+          if (!response.ok) {
+            throw new Error('Error adding favorite');
+          }
+  
+          const data = await response.json();
+          console.log('Fav added successfully:', data);
+        } catch (error) {
+          console.error('Error:', error);
+        }
+      }}
+
    
 
   };

@@ -29,11 +29,18 @@ const CoinPageContainer = styled.div`
 
 const DashBoard = () => {
     const storedUserId = localStorage.getItem('userId');
+    const storedUsername = localStorage.getItem('username');
+    console.log('storedUsername', storedUsername)
     const [userFav, changeUserFav] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
     const [cryptoData_fav, setCryptoData_fav] = useState([]);
     const [favData, setfavData] = useState([]);
     const [selectedCrypto, setSelectedCrypto] = useState(null);
+    const navigate = useNavigate();
+
+    if (storedUserId == 'undefined'){navigate('/login')}
+
+
 
     useEffect(() => {
         async function fetch_fav() {
@@ -43,7 +50,7 @@ const DashBoard = () => {
                   headers: {
                     'Content-Type': 'application/json',
                   },
-                  body: JSON.stringify({ userId: 3 }), // replace user.id with the actual user ID in future
+                  body: JSON.stringify({ userId: storedUserId }), // replace user.id with the actual user ID in future
                 });
 
                 if (!response.ok) {
@@ -51,9 +58,15 @@ const DashBoard = () => {
                 }
 
                 const data = await response.json();
+                if (data[0].fav == null) data[0].fav = [];
+
                 changeUserFav(data[0]);
                 console.log('got Fav successfully in dashboard:', data);
+
+                
               } catch (error) {
+      
+                changeUserFav({fav :[]});
                 console.error('Error:', error);
               }
         }
@@ -93,7 +106,8 @@ const DashBoard = () => {
         if (userFav.fav) {
             const filtered = cryptoData_fav.filter(crypto => userFav.fav.includes(crypto.id));
             setfavData(filtered);
-        }
+            
+        } else { setfavData([]);}
     }, [cryptoData_fav, userFav]);
 
     const display = (id) => {
@@ -103,7 +117,7 @@ const DashBoard = () => {
   return (
     <div>
             <TopNavBar />
-            <h1 style={{ color: 'white' }}>Welcome {storedUserId}</h1>
+            <h1 style={{ color: 'white' }}>Welcome {storedUsername}</h1>
             <DashboardContainer>
             <DashboardItems>
             <h2 style={{ color: 'white' }}>My Favorites</h2>
@@ -126,7 +140,7 @@ const DashBoard = () => {
                 )}
             </DashboardContainer>
         </div>
-  );
+    );
 };
 
 
