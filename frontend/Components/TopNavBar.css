@@ -1,6 +1,6 @@
-/* TopNavBar.css */
 
-/* Container Styles */
+
+
 header {
   display: flex;
   align-items: center;
@@ -8,23 +8,27 @@ header {
   padding: 10px 20px;
   background-color: #0f1c3f;
   color: white;
-  width: 100%;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  width: calc(100% - 40px);
+  /* max-width: auto;
+  margin: 0 auto; */
+  /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); */
   position: relative;
   z-index: 10;
+
 }
 
-/* Logo Styles */
+
 .logo {
-  width: 120px;
+  width: 150px;
   height: auto;
-  margin-right: 20px;
+  margin-right: 30px;
+  margin-left: -25px;
   position: relative;
   top: 0;
   left: 0;
 }
 
-/* Navigation Styles */
+
 nav {
   flex-grow: 1;
   display: flex;
@@ -38,10 +42,13 @@ nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
+  font-weight: bold;
+  align-items: center;
+
 }
 
 nav li {
-  margin: 10px;
+  margin: 30px 25px;
   padding: 10px;
 }
 
@@ -57,9 +64,47 @@ nav a:hover {
   text-decoration: underline;
 }
 
-/* nav a.active {
-  /* border-bottom: 2px solid white; */
-/* } */ 
+.nav-link {
+  background-image: linear-gradient(
+    to right,
+    rgb(122, 134, 238),
+    blueviolet 50%,
+    white 50%
+  );
+  background-size: 200% 100%;
+  background-position: -100%;
+  display: inline-block;
+  padding: 5px 0;
+  position: relative;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 0.3s ease-in-out;
+  margin: 12.6px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.nav-link:before {
+  content: '';
+  background: white;
+  display: block;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  background-position: 0;
+}
+
+.nav-link:hover::before {
+  width: 100%;
+}
+
+
 
 
 .button-container {
@@ -84,4 +129,18 @@ nav a:hover {
 
 .button-container button:hover {
   background-color: #3a5068;
+  transform: scale(1.05);
+}
+
+.logout-icon {
+  height: 50px;
+  width: 50px;
+  margin-right: 30px;
+  margin-bottom: 70px;
+  transition: transform 0.3s, background-color 0.3s;
+}
+
+.logout-icon:hover {
+  transform: scale(1.2);
+  cursor: pointer;
 }

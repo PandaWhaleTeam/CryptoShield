@@ -9,10 +9,15 @@ import { useParams, useNavigate } from 'react-router-dom';
 const Container = styled.div`
 background-color: white;
 min-height: 100vh;
+
 color: #0f1c3f;
-padding: 20px;
+padding: 5px; // 20px;
 text-align: center;
 position: relative;
+border-radius:10px;
+margin: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
 `;
 
 
@@ -21,6 +26,11 @@ const Content = styled.div`
   padding: 40px;
   font-color: white;
   border-radius: 10px;
+  // overflow-y: hidden;
+
+
+
+
 `;
 
 const BackButton = styled.button`
@@ -55,7 +65,7 @@ const Arrow = styled.svg`
 const CoinPage = () => {
 
     let { coinId } = useParams(); // Extract coinId from URL
-   
+
     const [cryptoData, setCryptoData] = useState([]);
     // const [moreCryptoData, setMoreCryptoData] = useState([]);  // lint taming. uncomment if you're going to use it
     const [error, setError] = useState(null);
