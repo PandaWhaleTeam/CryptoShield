@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Form, Container, Button, Alert } from 'react-bootstrap';
 import GoogleSignIn from './I.GoogleSignIn';
 // import HomePage from './B.Homepage';
-import cryptoLogo from '/public/IMG_3495.jpg';
+// import cryptoLogo from '/public/IMG_3495.jpg';
+import cryptoLogo from '/public/CryptoShield-logo.png';
 import './loginFrom.css';
 import googleLogo from '/public/google.png';
 import styled from 'styled-components';
@@ -171,8 +172,9 @@ const LoginForm = () => {
                 </BackButton>
 
       <Form className="loginBox" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '400px', padding: '20px', border: '1px solid #ddd', borderRadius: '8px', backgroundColor: '#f9f9f9' }}>
-        <img src={cryptoLogo} alt='CryptoShieldLogo' style={{ width: '80%', maxWidth: '150px', marginBottom: '20px' }} />
-
+        <div className='login-image'>
+        <img src={cryptoLogo} alt='CryptoShieldLogo' style={{ width: '100%', maxWidth: '200px', marginBottom: '20px' }} />
+        </div>
         <h2 className='signInText'>Sign In</h2>
 
         <Form.Group controlId="usernameInput" style={{ width: '100%', marginBottom: '15px', display: 'flex', justifyContent: 'center'}}>
