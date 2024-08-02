@@ -102,17 +102,18 @@ const TopNavBar =  () => {
         
     localStorage.setItem('userId', undefined);
     localStorage.setItem('username', undefined);
+    navigate('/login');
     // setLogged(false);
     // setLogoutState(Math.random())
         
-    if (location.pathname === '/homepage') {
+    // if (location.pathname === '/homepage') {
         
-        window.location.reload(); 
-        // setLogoutState(Math.random())
-        // window.location.reload(); 
-      } else {
-        navigate('/homepage');
-      }
+    //     window.location.reload(); 
+    //     // setLogoutState(Math.random())
+    //     // window.location.reload(); 
+    //   } else {
+    //     navigate('/homepage');
+    //   }
 
     }
 
@@ -143,7 +144,9 @@ const TopNavBar =  () => {
         </a>
         <a>
           <button onClick={() => navigate('/login')}>Sign In</button>
-          {<button onClick={logout}>Sign Out</button>}
+          {storedUserId !== "undefined" && (
+            <button onClick={logout}>Sign Out</button>
+          )}
         </a>
       </div>
     </header>

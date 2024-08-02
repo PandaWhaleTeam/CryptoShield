@@ -212,7 +212,7 @@ const LoginForm = () => {
         >
           Log In
         </Button>
-        <GoogleSignIn />
+        
         {/* <hr className='lineBreak' /> */}
         {/* <div className='lineBreakContainer'>
         <hr className='lineBreak'/>
@@ -257,6 +257,7 @@ const LoginForm = () => {
           </a>
         </div>
       </Form>
+      <GoogleSignIn />
     </Container>
     );
 };
