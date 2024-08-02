@@ -7,7 +7,7 @@ import Graph from './G.Graph.jsx';
 import LoginForm from './H.LoginForm.jsx';
 
 import TopNavbar from './TopNavBar.jsx';
-import DashBoard from './DashBoard.jsx';
+import DashBoard from './Dashboard.jsx';
 
 
 const App = () => {
@@ -26,6 +26,7 @@ const App = () => {
                     <Route path="/coinpage/:coinId" element={<CoinPage />} />
                     <Route path="/homePage" element={<HomePage />} />
                     <Route path="/dashboard" element={<DashBoard />} />
+                   
                     <Route path="/loginForm" element={<LoginForm />} />
                 </Routes>
             </div>

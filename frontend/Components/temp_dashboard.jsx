@@ -35,6 +35,9 @@ const DashBoard = () => {
     const [selectedCrypto, setSelectedCrypto] = useState(null);
     const navigate = useNavigate();
 
+    const storedUsername = localStorage.getItem('username');
+    const storedUserId = localStorage.getItem('userId');
+
     if (storedUserId == 'undefined'){navigate('/login')}
 
 
