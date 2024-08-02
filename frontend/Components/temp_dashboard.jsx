@@ -28,9 +28,6 @@ const CoinPageContainer = styled.div`
 `;
 
 const DashBoard = () => {
-    const storedUserId = localStorage.getItem('userId');
-    const storedUsername = localStorage.getItem('username');
-    console.log('storedUsername', storedUsername)
     const [userFav, changeUserFav] = useState({});
     const [searchTerm, setSearchTerm] = useState('');
     const [cryptoData_fav, setCryptoData_fav] = useState([]);
