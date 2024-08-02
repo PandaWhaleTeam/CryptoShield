@@ -73,6 +73,7 @@ SBcontroller.get_fav = async (req, res, next) => {
           res.status(500).json({ error: 'An error occurred' });
       }
   };
+  
 SBcontroller.verifyUser = async (req, res, next) => {
     try {
         console.log('I am inside of verifyUser')
@@ -163,6 +164,7 @@ SBcontroller.verifyUser = async (req, res, next) => {
         res.status(500).json({ error: 'An error occurred' });
     }
 };
+
 SBcontroller.verifyUser = async (req, res, next) => {
     try {
         console.log('I am inside of verifyUser')
@@ -180,16 +182,66 @@ SBcontroller.verifyUser = async (req, res, next) => {
             .select('*')
             .eq('username', username)
             .eq('password', password);
-        console.log(data)  
+
+        console.log('data', data)
         //if (error) throw error;
+        res.locals.userId = data[0].user_id;
+        res.locals.username = data[0].username;
+        // console.log('hereeeeeee',res.locals.username )  
         if(data.length === 0) {
             return res.status(401).send('Invalid username or password');
         }
+        
         return next()
     } catch (error) {
         console.error('Error:', error);
         res.status(500).json({ error: 'An error occurred inside of verifyUser middleware' });
     }
+}
+
+SBcontroller.verifyGoogleUser = async (req, res, next) =>{
+
+    console.log('I am inside of verifyGoogleUser')
+    console.log(req.body)
+
+    const { email, full_name} = req.body;
+    console.log(full_name)
+
+    const { data, error } = await supabase
+        .from('user')
+        .select('*')
+        .eq('email', email)
+
+    if(data.length === 0) {
+
+        console.log('google user currently does not exist, make it in user table' )
+
+        try {        
+            const { data_2, error } = await supabase
+                .from('user')
+                .insert([
+                { username: full_name, email: email},
+                ])
+                .select()
+
+            res.locals.userId = data_2[0].user_id;
+            res.locals.username = data_2[0].username;
+            return next()
+        
+        }
+        catch{console.error('Error:', error);}
+    }
+
+    else {
+        console.log('user already exists in the regular table')
+        console.log('data', data)
+
+        res.locals.userId = data[0].user_id;
+        res.locals.username = data[0].username;
+        return next()
+
+    }
+
 }
   //const { username, password } = req.body;
 
