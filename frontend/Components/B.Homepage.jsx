@@ -29,7 +29,7 @@ const CardWrapper = styled.div`
 const Container = styled.div`
   background-color: #0f1c3f;
   color: white;
-  padding: 125px;
+  padding: 0 20px;
   text-align: center;
 `;
 
@@ -37,6 +37,7 @@ const Title = styled.h1`
   justify-content: center;
   font-size: 3rem;
   margin-bottom: 30px;
+  margin-top: -5px;
 `;
 
 const SearchBarContainer = styled.div`
@@ -156,7 +157,7 @@ const HomePage = () => {
       setClickedHearts(prevState => (
         {
       ...prevState,
-      [id]: false, // if conin with the id doesn't exist in clikedlist, add it 
+      [id]: false, // if conin with the id doesn't exist in clikedlist, add it
     }));
     try {
       const response = await fetch('/api/deleteFav', {
@@ -166,24 +167,24 @@ const HomePage = () => {
         },
         body: JSON.stringify({ userId: 3, coinId: id }), // replace user.id with the actual user ID in future
       });
-  
+
       if (!response.ok) {
         throw new Error('Error adding favorite');
       }
-  
+
       const data = await response.json();
       console.log('Fav added successfully:', data);
     } catch (error) {
       console.error('Error:', error);
     }
-     
+
      console.log(clickedHearts)
 
     } else {
       setClickedHearts(prevState => (
         {
       ...prevState,
-      [id]: true, // if conin with the id doesn't exist in clikedlist, add it 
+      [id]: true, // if conin with the id doesn't exist in clikedlist, add it
     }));
     console.log('clickedHearts', clickedHearts)
     // send api request to SB
@@ -207,7 +208,7 @@ const HomePage = () => {
         console.error('Error:', error);
       }
     }
-   
+
 
   };
 
@@ -217,6 +218,26 @@ const HomePage = () => {
       <TopNavBar />
 
       <Title>CryptoShield</Title>
+      <SearchBarContainer>
+        <div style={{ width: '100%' }}>
+          <Select
+            styles={{
+              menu: (baseStyles) => ({
+                ...baseStyles,
+                color: 'black',
+              }),
+            }}
+            menuPlacement="auto"
+            placeholder="Search"
+            options={filteredData}
+            value={searchTerm}
+            labelKey="name"
+            valueKey="name"
+            color="black"
+            onChange={handleSelectChange}
+          />
+        </div>
+      </SearchBarContainer>
 
       <CardContainer>
         {cryptoData.map((crypto, index) => (
@@ -239,26 +260,7 @@ const HomePage = () => {
         ))}
       </CardContainer>
 
-      <SearchBarContainer>
-        <div style={{ width: '100%' }}>
-          <Select
-            styles={{
-              menu: (baseStyles) => ({
-                ...baseStyles,
-                color: 'black',
-              }),
-            }}
-            menuPlacement="auto"
-            placeholder="Search"
-            options={filteredData}
-            value={searchTerm}
-            labelKey="name"
-            valueKey="name"
-            color="black"
-            onChange={handleSelectChange}
-          />
-        </div>
-      </SearchBarContainer>
+
     </Container>
   );
 };

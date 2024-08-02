@@ -8,11 +8,15 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
 background-color: white;
-
+border-radius: 10px;
 color: #0f1c3f;
-padding: 20px;
+padding: 5px;
 text-align: center;
 position: relative;
+height: 530px;
+
+
+
 `;
 
 
@@ -21,6 +25,10 @@ const Content = styled.div`
   padding: 10px;
   font-color: white;
   border-radius: 10px;
+  height: calc(100% - 20px);
+  overflow-y: auto;
+
+
 `;
 
 

@@ -14,6 +14,7 @@ const CardStyle = styled.section`
   border-radius: 10px;
   color: black;
   transition: transform 0,3s ease, box-shadow 0.3s ease;
+  
 
   &:hover {
     transform: scale(1.06);
@@ -32,7 +33,7 @@ const Logo_dash = styled.img`
   margin-top: 18px;
   margin-right: 10px;
   margin-bottom: 20px;
-  
+
 `;
 
 
@@ -52,7 +53,7 @@ const PreviewCard_dash = ({ name, logo}) => { // Added onClick prop
 
       <Logo_dash src={logo} alt={`${name} logo`} />
       <Name>{name}</Name>
-   
+
 
     </CardStyle>
   );

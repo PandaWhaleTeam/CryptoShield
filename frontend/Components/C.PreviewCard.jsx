@@ -16,7 +16,7 @@ const CardStyle = styled.section`
   transition: transform 0,3s ease, box-shadow 0.3s ease;
 
   &:hover {
-    transform: scale(1.06);
+    transform: scale(1.05);
     box-shadow: 12px 12px 7px rgba(255, 255, 255, 0.5);
     background-color: #c6cbec
   }
