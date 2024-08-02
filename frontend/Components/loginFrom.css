@@ -1,7 +1,7 @@
 .log-in-button {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     margin-bottom: 5px;
-    
+
 }
 
 .log-in-button:hover {
@@ -91,6 +91,20 @@
     font-size: 30px;
     color: #333;
     margin-bottom: 30px;
-    margin-top: 5px;
+    margin-top: -25px;
     font-weight: bold;
+
   }
+
+  /* .login-image {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 0;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 4px solid #0f1c3f;
+  } */
