@@ -162,7 +162,10 @@ const TopNavBar = ({ showButtons = true, showLogo = true }) => {
           <button>Sign Up</button>
         </a>
         <a>
-          <button onClick={() => navigate('/login')}>Sign In</button>
+         
+          {storedUserId == "undefined" && (
+             <button onClick={() => navigate('/login')}>Sign In</button>
+          )}
           {storedUserId !== "undefined" && (
             <button onClick={logout}>Sign Out</button>
           )}
