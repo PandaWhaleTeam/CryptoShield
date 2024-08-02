@@ -6,7 +6,7 @@ import GoogleSignIn from './I.GoogleSignIn';
 // import cryptoLogo from '/public/IMG_3495.jpg';
 import cryptoLogo from '/public/CryptoShield-logo.png';
 import './loginFrom.css';
-import googleLogo from '/public/google.png';
+
 
 const LoginForm = () => {
     const [loginInput, updateLoginEntered] = useState({
