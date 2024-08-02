@@ -7,6 +7,9 @@ import cryptoLogo from '/public/IMG_3495.jpg';
 import './loginFrom.css';
 import googleLogo from '/public/google.png';
 import FailAlert from './FailAlert';
+import { createClient } from '@supabase/supabase-js'
+const supabase = createClient('https://ptdcusrimsowtumozeln.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB0ZGN1c3JpbXNvd3R1bW96ZWxuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE3ODY1ODIsImV4cCI6MjAzNzM2MjU4Mn0.c00NECLec-LoF5CiH38bBKARXHoBoFfG_2MDuOrkKUE')
+
 
 const LoginForm = () => {
 
@@ -29,6 +32,7 @@ const LoginForm = () => {
 
     const navigate = useNavigate();
 
+    //login verification with username and password. Verifies that username and password are a match to a record in database.
     const handleSubmit = async (event) => {
       event.preventDefault();
       if(isGoogleSignIn){
@@ -45,7 +49,7 @@ const LoginForm = () => {
         if (response.ok) {
           console.log('response okay')
           setLoginStatus(true)
-          navigate('/dashboard'); //change this to ProfilePage once it's created
+          navigate('/dashboard');
         } else {
           console.error('Login failed');
           setLoginStatus(false)
@@ -54,7 +58,31 @@ const LoginForm = () => {
         console.error('Error with login fetch:', err);
       }
     };
+  //login verification using supabase's signInWithPassword method. Having issues with password verification.   
+    // const handleSubmit = async (event) =>{
+    //   event.preventDefault();
+    //   if(isGoogleSignIn){
+    //     return;
+    //   }
+    //     console.log(loginInput.usernameInput)
+    //     console.log(loginInput.passwordInput)    
+        
+    //     const { data, error } = await supabase.auth.signInWithPassword({
+    //       email: `${loginInput.usernameInput}`,
+    //       password: `${loginInput.passwordInput}`
+       
+    //     })
+
+    //     if (error) {
+    //       console.error('Error: ', error)
+    //       setLoginStatus(false);
     
+    //     } else {
+    //       setLoginStatus(true);
+    //       navigate('/dashboard');
+    //     }
+    //   }
+
     let alertMessage = <></>
     if(loginStatus === false){
       alertMessage = (
@@ -75,7 +103,7 @@ const LoginForm = () => {
 
         <Form.Group controlId="usernameInput" style={{ width: '100%', marginBottom: '15px', display: 'flex', justifyContent: 'center'}}>
           <Form.Label style={{ fontFamily: 'Arial', color: '#333', fontSize: '14px' }}></Form.Label>
-          <Form.Control className='form-control'placeholder='Username' type="text" onChange={handleInputChange} style={{ padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }} />
+          <Form.Control className='form-control'placeholder='Username' type="email" onChange={handleInputChange} style={{ padding: '10px', borderRadius: '4px', border: '1px solid #ccc' }} />
         </Form.Group>
 
         <Form.Group controlId="passwordInput" style={{ width: '100%', marginBottom: '20px', display: 'flex', justifyContent: 'center' }}>
