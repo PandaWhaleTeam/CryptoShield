@@ -11,6 +11,36 @@ import FailAlert from './FailAlert';
 import { createClient } from '@supabase/supabase-js'
 const supabase = createClient('https://ptdcusrimsowtumozeln.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB0ZGN1c3JpbXNvd3R1bW96ZWxuIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjE3ODY1ODIsImV4cCI6MjAzNzM2MjU4Mn0.c00NECLec-LoF5CiH38bBKARXHoBoFfG_2MDuOrkKUE')
 
+import styled from 'styled-components';
+
+const BackButton = styled.button`
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  transition: transform 0,3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    background-color: #24303a;
+    transform: scale(1.05);
+  }
+`;
+
+const Arrow = styled.svg`
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  margin-right: 8px;
+`;
+
 
 const LoginForm = () => {
 
@@ -48,9 +78,17 @@ const LoginForm = () => {
           body: JSON.stringify(loginInput),
         });
         if (response.ok) {
+          // console.log(response)
           console.log('response okay')
-          setLoginStatus(true)
-          navigate('/dashboard');
+
+          const data = await response.json();
+          console.log('Response okay');
+          console.log('User ID:', data.userId); 
+          console.log('User ID:', data.username); 
+          localStorage.setItem('userId', data.userId);
+          localStorage.setItem('username', data.username);
+   
+          navigate('/HomePage'); //change this to ProfilePage once it's created
         } else {
           console.error('Login failed');
           setLoginStatus(false)
@@ -96,6 +134,12 @@ const LoginForm = () => {
 
 
 <Container className="loginFormContainer" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', padding: '20px' }}>
+                <BackButton onClick={() => navigate('/')}>
+                <Arrow xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                 <path d="M15 19l-7-7 7-7" />
+                </Arrow>
+                Back to Homepage
+                </BackButton>
 
       <Form className="loginBox" onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', maxWidth: '400px', padding: '20px', border: '1px solid #ddd', borderRadius: '8px', backgroundColor: '#f9f9f9' }}>
         <div className='login-image'>

@@ -67,6 +67,13 @@ const DashBoard = () => {
     const [cryptoData_fav, setCryptoData_fav] = useState([]);
     const [favData, setfavData] = useState([]);
     const [selectedCrypto, setSelectedCrypto] = useState(null);
+    const navigate = useNavigate();
+    const storedUserId = localStorage.getItem('userId');
+    const storedUsername = localStorage.getItem('username');
+
+    if (storedUserId == 'undefined'){navigate('/login')}
+
+
 
     useEffect(() => {
         async function fetch_fav() {
@@ -76,7 +83,7 @@ const DashBoard = () => {
                   headers: {
                     'Content-Type': 'application/json',
                   },
-                  body: JSON.stringify({ userId: 3 }), // replace user.id with the actual user ID in future
+                  body: JSON.stringify({ userId: storedUserId }), // replace user.id with the actual user ID in future
                 });
 
                 if (!response.ok) {
@@ -84,9 +91,15 @@ const DashBoard = () => {
                 }
 
                 const data = await response.json();
+                if (data[0].fav == null) data[0].fav = [];
+
                 changeUserFav(data[0]);
                 console.log('got Fav successfully in dashboard:', data);
+
+                
               } catch (error) {
+      
+                changeUserFav({fav :[]});
                 console.error('Error:', error);
               }
         }
@@ -107,7 +120,7 @@ const DashBoard = () => {
             } else {
               throw new Error(`Error: ${response.status}`);
             }
-          }
+          } 
           catch (error) {
             console.error(error.message);
           }
@@ -126,7 +139,8 @@ const DashBoard = () => {
         if (userFav.fav) {
             const filtered = cryptoData_fav.filter(crypto => userFav.fav.includes(crypto.id));
             setfavData(filtered);
-        }
+            
+        } else { setfavData([]);}
     }, [cryptoData_fav, userFav]);
 
     const display = (id) => {
@@ -141,7 +155,7 @@ const DashBoard = () => {
             <div className="dashboard-logo-container">
               <img src={cryptoLogo} className='dashboard-logo' alt="CryptoShieldLogo" />
             </div>
-          <h1 className='dashboard-title' style={{ color: 'white', paddingLeft: '20px' }}>Welcome "username goes here"</h1>
+          <h1 className='dashboard-title' style={{ color: 'white', paddingLeft: '20px' }}>Welcome {storedUsername }</h1>
 
             <DashboardContainer>
             <MyFavorites favData={favData} onCryptoClick={display} />
