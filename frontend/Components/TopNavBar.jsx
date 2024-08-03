@@ -158,8 +158,8 @@ const TopNavBar = ({ showButtons = true, showLogo = true }) => {
 
       {showButtons && (
       <div className="button-container">
-        <a href="/api/signUp">
-          <button>Sign Up</button>
+        <a>
+          <button onClick={() => navigate('/signUp')}>Sign Up</button>
         </a>
         <a>
          
@@ -169,6 +169,7 @@ const TopNavBar = ({ showButtons = true, showLogo = true }) => {
           {storedUserId !== "undefined" && (
             <button onClick={logout}>Sign Out</button>
           )}
+          
         </a>
       </div>
       )}

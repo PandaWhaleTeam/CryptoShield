@@ -3,6 +3,7 @@ require("dotenv").config();
 const supabaseUrl = 'https://ptdcusrimsowtumozeln.supabase.co';
 const supabaseKey = process.env.SUPABASE_KEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
+const pass = require('./password')
 
 const SBcontroller = {};
 
@@ -242,6 +243,53 @@ SBcontroller.verifyGoogleUser = async (req, res, next) =>{
 
     }
 
+}
+
+SBcontroller.addUser = async(req, res, next) => {
+   console.log(req.body)
+    const {
+        firstNameInput: firstname,
+        lastNameInput: lastname,
+        emailInput: email, 
+        usernameInput: username, 
+        passwordInput: password,
+        } = req.body;
+   
+    try {  
+        //const hashedPassword = await pass.hashPassword(password);
+        const { data, error } = await supabase.auth.signUp({
+            email: email,
+            password: password,
+            options: {
+                data: {
+                    first_name:firstname,
+                    last_name:lastname,
+                    username: username,
+                },
+            },
+        });
+        console.log('signUpController', data)
+        try {        
+            const { data_2, error } = await supabase
+                .from('user')
+                .insert([
+                { username: username, email: email, password: password, first_name: firstname, last_name: lastname},
+                ])
+                .select()
+
+            res.locals.userId = data_2[0].user_id;
+            res.locals.username = data_2[0].username;
+            return next()
+        
+        }
+        catch{console.error('Error:', error);}
+        return res.status(200).json({ data })
+    } 
+    catch (error) {
+        // returning 500 for server side error
+        console.log('User SignUp Error', error)
+        return res.status(500).json({error: 'Server Add Error'})
+    }
 }
   //const { username, password } = req.body;
 

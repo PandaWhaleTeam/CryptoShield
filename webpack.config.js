@@ -7,21 +7,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
-  devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-    port: 3000,
-    proxy: [
-      {
-        context: ['/api'],
-        target: 'http://localhost:8080'
-      }
-    ],
-    historyApiFallback: true,
-    hot: true,
-    open: true
-  },
+  mode: "development",
   module: {
     rules: [
       {
@@ -50,6 +36,24 @@ module.exports = {
       }
 
     ]
+  },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
+    port: 3000,
+    hot: true,
+    historyApiFallback: true,
+    open: true,
+    proxy: [
+      {
+        context: ['/api/'],
+        target: 'http://localhost:8080',
+        secure: false,
+
+      }
+    ],
+   // open: true
   },
   plugins: [
     new HtmlWebpackPlugin({

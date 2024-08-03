@@ -51,6 +51,13 @@ router.post('/googlelogin', SB_controller.verifyGoogleUser, (req, res) => {
   return res.status(200).json({ userId: res.locals.userId, username: res.locals.username })
 });
 
+
+router.post('/signUp', SB_controller.addUser, (req, res) => {
+  return res.status(200).json({message: 'this is working'})
+})
+
+
+
 // router.get("/auth/callback", async function (req, res) {
 //   const code = req.query.code
 //   const next = req.query.next ?? "/"
