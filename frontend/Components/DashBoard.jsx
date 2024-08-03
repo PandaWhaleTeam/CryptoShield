@@ -15,7 +15,7 @@ const DashboardContainer = styled.div`
   // justify-content: space-between;
   justify-content: flex-start;
   height: 100vh;
-  gap: 15px;
+  gap: 20px;
 
 `;
 
@@ -36,6 +36,9 @@ const Content = styled.div`
   padding: 10px;
   color: white;
   border-radius: 10px;
+
+
+
 `;
 
 const DashboardItems = styled.div`

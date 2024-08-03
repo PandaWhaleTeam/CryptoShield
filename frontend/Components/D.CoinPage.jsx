@@ -26,7 +26,7 @@ const Content = styled.div`
   padding: 40px;
   font-color: white;
   border-radius: 10px;
-  // overflow-y: hidden;
+  // overflow-y: auto;
 
 
 

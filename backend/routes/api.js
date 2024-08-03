@@ -41,6 +41,9 @@ router.post('/login', SB_controller.verifyUser, (req, res) => {
   return res.status(200).send('Successful Login!')
 });
 
+// router.delete('/deleteFav', SB_controller.delete_fav, (req, res) => {
+//   return res.status(200).json({ message: 'Coin deleted successfully' });
+// });
 
 // router.get("/auth/callback", async function (req, res) {
 //   const code = req.query.code
