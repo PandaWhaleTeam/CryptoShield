@@ -28,6 +28,36 @@ const Content = styled.div`
   height: calc(100% - 20px);
   overflow-y: auto;
 
+  &::-webkit-scrollbar {
+    width: 14px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #0f1c3f;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+  &::-webkit-scrollbar-button {
+    display: none;
+  }
+
+  // .scrollbar{
+  //   // scrollbar-width: thin;
+  //   scrollbar-color: #888 #0f1c3f;
+  // }
+
+
 
 `;
 

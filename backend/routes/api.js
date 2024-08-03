@@ -44,12 +44,14 @@ router.post('/login', SB_controller.verifyUser, (req, res) => {
   return res.status(200).json({ userId: res.locals.userId, username: res.locals.username })
 });
 
+
 router.post('/googlelogin', SB_controller.verifyGoogleUser, (req, res) => {
   //user_id = res.locals.userId
   console.log('res.locals.userId',res.locals.userId)
   console.log('res.locals.userId',res.locals.username)
   return res.status(200).json({ userId: res.locals.userId, username: res.locals.username })
 });
+
 
 // router.get("/auth/callback", async function (req, res) {
 //   const code = req.query.code

@@ -16,8 +16,9 @@ const HeartIcon = styled.div`
   cursor: pointer;
   transition: background-color 0.3s;
   position: absolute;
-  top: 20px;
-  right: 0px;
+  top: 30px;
+  right: -15px;
+
 
 `;
 
@@ -58,7 +59,7 @@ const CardContainer = styled.div`
   justify-content: center;
   overflow-y: auto;
   scrollbar-width: none;
-  max-height: 460px;
+  max-height: 480px;
   max-width: 100%;
 `;
 
