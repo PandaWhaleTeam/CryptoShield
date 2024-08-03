@@ -3,7 +3,7 @@ import { createClient } from '@supabase/supabase-js'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import googleLogo from '/public/google.png';
+import googleLogo from '../../public/google.png';
 import './googleSignIn.css';
 
 

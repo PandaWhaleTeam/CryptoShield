@@ -91,7 +91,7 @@ import React , {useState} from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import cryptoLogo from "../images/cryptologo.png";
 import './TopNavBar.css';
-import logoutLogo from '/public/logout.png';
+import logoutLogo from '../../public/logout.png';
 
 const TopNavBar = ({ showButtons = true, showLogo = true }) => {
     const navigate = useNavigate();
