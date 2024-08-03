@@ -4,41 +4,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import PreviewCard_dash from './C.PreviewCard_dash';
 import TopNavBar from './TopNavBar';
 import CoinPage_dash from './D.CoinPage_dash';
-import cryptoLogo from '/public/CryptoShield-logo.png';
-import './dashboard.css';
-import MyFavorites from './MyFavorites';
 
 const DashboardContainer = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  // justify-content: space-between;
-  justify-content: flex-start;
-  height: 100vh;
-  gap: 20px;
-
-`;
-
-const Container = styled.div`
-  background-color: white;
-  color: #0f1c3f;
-  padding: 20px;
-  text-align: center;
-  position: relative;
-  border-radius: 10px;
-  margin: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-`;
-
-const Content = styled.div`
-  background-color: #0f1c3f;
-
-  padding: 10px;
-  color: white;
-  border-radius: 10px;
-
-
-
+  justify-content: space-between;
 `;
 
 const DashboardItems = styled.div`
@@ -54,14 +25,6 @@ const CardWrapper = styled.div`
 const CoinPageContainer = styled.div`
   flex: 1;
   margin: 10px;
-
-  background-color: white;
-  color: #0f1c3f;
-
-
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 `;
 
 const DashBoard = () => {
@@ -71,8 +34,9 @@ const DashBoard = () => {
     const [favData, setfavData] = useState([]);
     const [selectedCrypto, setSelectedCrypto] = useState(null);
     const navigate = useNavigate();
-    const storedUserId = localStorage.getItem('userId');
+
     const storedUsername = localStorage.getItem('username');
+    const storedUserId = localStorage.getItem('userId');
 
     if (storedUserId == 'undefined'){navigate('/login')}
 
@@ -150,20 +114,13 @@ const DashBoard = () => {
         setSelectedCrypto(id);
     };
 
-    return (
-        <div>
-          <div className='dashboard-topnav'>
-            <TopNavBar showButtons={false} showLogo={false} />
-            </div>
-            <div className="dashboard-logo-container">
-              <img src={cryptoLogo} className='dashboard-logo' alt="CryptoShieldLogo" />
-            </div>
-          <h1 className='dashboard-title' style={{ color: 'white', paddingLeft: '20px' }}>Welcome {storedUsername }</h1>
-
+  return (
+    <div>
+            <TopNavBar />
+            <h1 style={{ color: 'white' }}>Welcome {storedUsername}</h1>
             <DashboardContainer>
-            <MyFavorites favData={favData} onCryptoClick={display} />
-                {/* <DashboardItems>
-                    <h2 className='dashboard-subtitle' style={{ color: 'white', paddingLeft: '20px' }}>My Favorites</h2>
+            <DashboardItems>
+            <h2 style={{ color: 'white' }}>My Favorites</h2>
                     {favData.map((crypto, index) => (
                         <CardWrapper key={index}>
                             <Link onClick={() => display(crypto.id)} style={{ textDecoration: 'none' }}>
@@ -175,9 +132,9 @@ const DashBoard = () => {
                             </Link>
                         </CardWrapper>
                     ))}
-                </DashboardItems> */}
+                </DashboardItems>
                 {selectedCrypto && (
-                    <CoinPageContainer style={{ borderRadius: '10px' }}>
+                    <CoinPageContainer>
                         <CoinPage_dash id={selectedCrypto}></CoinPage_dash>
                     </CoinPageContainer>
                 )}
